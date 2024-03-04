@@ -18,7 +18,7 @@ Console.WriteLine($"A basilisk with {basilisk} HP appears!");
 
 while (basilisk > 0)
 {
-    foreach (var character in party) 
+    foreach (var character in party)
     {
         int d4 = 0;
         d4 += random.Next(1, 5);
@@ -32,7 +32,7 @@ while (basilisk > 0)
         else
         {
             Console.WriteLine("Basilisk has 0 HP left.");
-            goto VictoryMessage();
+            goto VictoryMessage;
         }
     }// Character attacks
 
@@ -54,16 +54,7 @@ while (basilisk > 0)
         Console.WriteLine("The party has failed and the basilisk continues to turn unsuspecting adventurers to stone.");
         basilisk = 0;
     }
-
-    //// else if ((party.Count > 0) && (basilisk == 0))
-    //void VictoryMessage()
-    //{
-    //    Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
-    //}
-
 }
 
-void VictoryMessage()
-{
+VictoryMessage:
     Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
-}
