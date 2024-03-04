@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+CSharpLessons/CSharpLessons.csproj
+CSharpLessons/CSharpLessons.sln
+CSharpLessons/Program.cs
