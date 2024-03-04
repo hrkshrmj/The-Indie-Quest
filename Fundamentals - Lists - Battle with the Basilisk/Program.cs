@@ -32,29 +32,34 @@ while (basilisk > 0)
         else
         {
             Console.WriteLine("Basilisk has 0 HP left.");
-            goto VictoryMessage;
         }
     }// Character attacks
 
-    int hitChar = random.Next(party.Count()); // Random choice of target
-    Console.WriteLine($"The basilisk uses petrifying gaze on {party[hitChar]}"); // Basilisk attacks target
-    int d20 = (random.Next(1, 21)) + 3; // DC12 Constitution saving roll
-    if (d20 >= 12)
+    if (basilisk > 0)
     {
-        Console.WriteLine($"{party[hitChar]} dodges the attack!");
-    } // Character survives
-    else
-    {
-        Console.WriteLine($"{party[hitChar]} has been turned to stone! They are knocked out from the battle!");
-        party.Remove(party[hitChar]);
-    } // Character knocked out
+        int hitChar = random.Next(party.Count()); // Random choice of target
+        Console.WriteLine($"The basilisk uses petrifying gaze on {party[hitChar]}"); // Basilisk attacks target
+        int d20 = (random.Next(1, 21)) + 3; // DC12 Constitution saving roll
+        if (d20 >= 12)
+        {
+            Console.WriteLine($"{party[hitChar]} dodges the attack!");
+        } // Character survives
+        else
+        {
+            Console.WriteLine($"{party[hitChar]} has been turned to stone! They are knocked out from the battle!");
+            party.Remove(party[hitChar]);
+        } // Character knocked out
+    } // Basilisk attack
+    
 
     if ((party.Count == 0) && (basilisk > 0))
     {
         Console.WriteLine("The party has failed and the basilisk continues to turn unsuspecting adventurers to stone.");
         basilisk = 0;
     }
-}
 
-VictoryMessage:
-    Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
+    else if ((party.Count > 0) && (basilisk <= 0))
+    {
+        Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
+    }
+}
