@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 class Program
 {
+    private static Random random;
+
     static int DiceRoll(int noOfRolls, int diceSides, int fixedBonus = 0)
     {
         var random = new Random();
@@ -74,6 +76,7 @@ class Program
 
     static void Main(string[] args)
     {
+        random = new Random();
         List<string> realNames = [ "Jazlyn", "Theron", "Dayana", "Rolando" ];
         Console.WriteLine($"Jazlyn, Theron, Dayana, Rolando descend into the dungeon.");
         SimulateCombat(realNames, "Orc", DiceRoll(2, 8, 6), 10);
@@ -83,7 +86,7 @@ class Program
         SimulateCombat(realNames, "Troll", DiceRoll(8, 10, 40), 16);
         if (realNames.Count > 0)
         {
-            Console.WriteLine($"After three grueling battles, the surviving heroes {realNames} return from the dungeons to live another day.");
+            Console.WriteLine($"After three grueling battles, the surviving heroes {string.Join(",", realNames)} return from the dungeons to live another day.");
         }
     }
         
