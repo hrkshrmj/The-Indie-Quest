@@ -73,7 +73,7 @@
             MultiplicationsTable(multiplications);
             Print2DArray(multiplications);
 
-            //---------------------------
+            //--------------------------- abandoned the missions from Part 2: Missions 4, 5; and Part 3 onwards
 
             //char[,] tttoe = new char[3, 3]; // Declare empty array
             //char[] marks = ['x', 'o', '-'];
@@ -93,45 +93,45 @@
             //    Console.WriteLine();
             //}
 
-            int[,] chessboard = new int[8, 8];
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    chessboard[i, j] = Int32.MaxValue;
-                }
-            }
+            //int[,] chessboard = new int[8, 8];
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    for (int j = 0; j < 8; j++)
+            //    {
+            //        chessboard[i, j] = Int32.MaxValue;
+            //    }
+            //}
 
-            void knightMove(int sx, int sy, int move)
-            {
-                if (sx < 0 || sx > 7 || sy < 0 || sy > 7) return;
+            //void knightMove(int sx, int sy, int move)
+            //{
+            //    if (sx < 0 || sx > 7 || sy < 0 || sy > 7) return;
 
-                if (chessboard[sx, sy] < move) return;
+            //    if (chessboard[sx, sy] < move) return;
 
-                chessboard[sx, sy] = move;
+            //    chessboard[sx, sy] = move;
 
-                knightMove(sx + 1, sy + 2, move + 1);
-                knightMove(sx + 2, sy + 1, move + 1);
-                knightMove(sx - 1, sy + 2, move + 1);
-                knightMove(sx - 2, sy + 1, move + 1);
-                knightMove(sx + 1, sy - 2, move + 1);
-                knightMove(sx + 2, sy - 1, move + 1);
-                knightMove(sx + 1, sy + 2, move + 1);
-                knightMove(sx - 1, sy - 2, move + 1);
-                knightMove(sx - 2, sy - 1, move + 1);
+            //    knightMove(sx + 1, sy + 2, move + 1);
+            //    knightMove(sx + 2, sy + 1, move + 1);
+            //    knightMove(sx - 1, sy + 2, move + 1);
+            //    knightMove(sx - 2, sy + 1, move + 1);
+            //    knightMove(sx + 1, sy - 2, move + 1);
+            //    knightMove(sx + 2, sy - 1, move + 1);
+            //    knightMove(sx + 1, sy + 2, move + 1);
+            //    knightMove(sx - 1, sy - 2, move + 1);
+            //    knightMove(sx - 2, sy - 1, move + 1);
 
-            }
+            //}
 
-            knightMove(random.Next(8), random.Next(8), 0);
+            //knightMove(random.Next(8), random.Next(8), 0);
 
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Console.Write(chessboard[i,j]);
-                }
-                Console.WriteLine();
-            }
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    for (int j = 0; j < 8; j++)
+            //    {
+            //        Console.Write(chessboard[i,j]);
+            //    }
+            //    Console.WriteLine();
+            //}
         }
     }
 }
