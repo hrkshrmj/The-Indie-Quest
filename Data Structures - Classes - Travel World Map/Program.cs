@@ -82,7 +82,7 @@ namespace Data_Structures___Classes___Travel_World_Map
                 Console.WriteLine($"Welcome to {currentLocation.Name}, {currentLocation.Description} Possible destinations are:");
                 for (int i = 0; i < currentLocation.Neighbors.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {currentLocation.Neighbors[i]}");
+                    Console.WriteLine($"{i + 1}. {currentLocation.Neighbors[i].Name}");
                 }
 
                 Console.WriteLine("Where do you want to travel?");
