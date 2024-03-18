@@ -15,9 +15,12 @@ namespace Files
                 Console.WriteLine($"Welcome Back, {nameRead}");
             }
         else
-            Console.WriteLine("Welcome to your biggest adventure yet!");
-            Console.WriteLine("What is your name, traveler?");
-            File.WriteAllText("playername.txt", Console.ReadLine());
+            {
+                Console.WriteLine("Welcome to your biggest adventure yet!");
+                Console.WriteLine("What is your name, traveler?");
+                File.WriteAllText("playername.txt", Console.ReadLine());
+            }
+            
 
         }
     }

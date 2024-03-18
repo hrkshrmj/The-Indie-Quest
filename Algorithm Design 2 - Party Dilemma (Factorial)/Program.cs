@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-           var list = new List<string> { "Miyamoto","Meier","Kojima","Carmack","Newell","Molyneux","Sawyer" };
+           var list = new List<string> { "Miyamoto","Meier","Kojima","Carmack","Newell","Molyneux","Sawyer", "Sakurai" };
             Console.WriteLine($"Starting participants: {string.Join(",",list)}");
             WriteAllPermutations(list);
         }
