@@ -7,11 +7,15 @@ namespace Files
     {
         static void Main(string[] args)
         {
-        var playerNamePath = File.Create("playername.txt");
-
+            //var playerNamePath = File.Create("playername.txt");
+            string nameRead = "";
         if (File.Exists("playername.txt"))
             {
-                var nameRead = File.ReadAllText("playername.txt");
+                nameRead = File.ReadAllText("playername.txt");
+            }
+
+        if (!string.IsNullOrEmpty(nameRead))
+            {
                 Console.WriteLine($"Welcome Back, {nameRead}");
             }
         else
