@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic; 
+﻿using System.Collections.Generic;
 namespace Algorithm_Design_4___Adventure_Map_Contd_
 
 {
@@ -22,13 +22,15 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
             int fourthQuarter = width * 3 / 4;
             var random = new Random();
 
-            // Generate river
+            // Generate River
+
             var river = GenerateVerticalCurve(fourthQuarter, height, 2);
 
-            // Generate wall
+            // Generate Wall
+
             var wall = GenerateVerticalCurve(firstQuarter, height, 25);
 
-            // Generate road
+            // Generate Road
 
             var road = new List<int>();
             int roadStartY = height / 2;
@@ -37,11 +39,11 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
             {
                 road.Add(roadStartY);
 
-                // Are we away from the river AND wall?
+                // Are we away from the river and the wall?
                 if (x < river[roadStartY] - 3 || x > river[roadStartY] + 5)
                     if (x < wall[roadStartY] - 2 || x > wall[roadStartY] + 4)
-                        {
-                        // Move the road slightly.
+                    {
+                        // Move the road a step up or down with a move chance of 0.3
                         int direction = random.Next(7);
                         if (direction == 0)
                         {
@@ -56,9 +58,8 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                     }
 
             }
-            
 
-            // Find intersection
+            // Find intersection of river and road
 
             int roadIntersectionX = 0;
             for (int x = 0; x < width; x++)
@@ -71,9 +72,11 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
             }
             int roadIntersectionY = road[roadIntersectionX];
 
+
             // Title
+
             var title = "ADVENTURE MAP";
-            var titleX = (width - title.Length) / 2;
+            var titleX = (width - title.Length) / 2; // Calculate title position at center top
 
             // Draw Map
 
@@ -82,12 +85,12 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
 
                 for (int x = 0; x < width; x++)
                 {
-                    bool verticalBorder = x == 0 || x == width-1;
-                    bool horizontalBorder = y == 0 || y == height-1;
+                    bool verticalBorder = x == 0 || x == width - 1;
+                    bool horizontalBorder = y == 0 || y == height - 1;
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
 
-                    // Draws Borders
+                    // Draw Borders
                     if (verticalBorder && horizontalBorder)
                     {
                         Console.Write("+");
@@ -114,9 +117,7 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                         continue;
                     }
 
-                    
-
-                    //Draws bridge if one up and one down, and 3 left and 5 right of river
+                    //Draw Bridge, if 1 up or 1 down and (3) left and (5) right of river
                     if ((y == road[x] - 1 || y == road[x] + 1) && (x > river[road[x]] - 3 && x < river[road[x]] + 5))
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -124,7 +125,7 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                         continue;
                     }
 
-                    // Draws Road
+                    // Draw middle horizontal Road
                     if (y == road[x])
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
@@ -132,8 +133,7 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                         continue;
                     }
 
-
-                    // Draws River Road
+                    // Draw river vertical Road
                     int riverRoad = river[y] - 5;
                     if (y > roadIntersectionY && x == riverRoad)
                     {
@@ -145,44 +145,44 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                     // Draw Wall TURRETS
                     Console.ForegroundColor = ConsoleColor.DarkGray;
 
+                    // Opening wall turret above and below intersection of wall and road
                     if (y == road[x] + 1 && x == wall[y] || y == road[x] - 1 && x == wall[y])
                     {
                         Console.Write("[");
                         continue;
                     }
 
+                    // Closing wall turret above and below intersection of wall and road
                     if (y == road[x] + 1 && x == wall[y] + 1 || y == road[x] - 1 && x == wall[y] + 1)
                     {
                         Console.Write("]");
                         continue;
                     }
 
-                    // Draws Wall
+                    // Draw Wall
                     if (x >= wall[y] && x < wall[y] + 2)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGray;
 
-                        DrawVerticalCurve(wall, x, y);
+                        DrawVerticalCurve(wall, x, y, '/' , '|' , '\\');
                         continue;
-                        
+
                     }
 
-                    // Draws River
+                    // Draw River
                     if (x >= river[y] && x < river[y] + 3)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
 
-                        int direction = river[y + 1] - river[y];
-
-                        DrawVerticalCurve(river, x, y);
+                        DrawVerticalCurve(river, x, y, '{', 'S', '}');
                         continue;
                     }
 
-                    // Draws Forest
-                    if (x < firstQuarter) 
+                    // Draw Forest
+                    if (x < firstQuarter)
                     {
                         int forestInverseChance = x - 1;
-                        if (random.Next(forestInverseChance) <8)
+                        if (random.Next(forestInverseChance) < 8)
                         {
                             // Draw one of the trees.
                             var trees = "xX****%";
@@ -196,13 +196,13 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                             }
 
-                            Console.Write(trees[random.Next(trees.Length)]);
+                            Console.Write(trees[random.Next(trees.Length)]); // Draws a random character within 'trees'
                             continue;
                         }
 
                     }
 
-                Console.Write(' ');
+                    Console.Write(' '); // adds empty space
 
                 }
                 Console.WriteLine();
@@ -212,7 +212,7 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
 
         }
 
-        static List<int> GenerateVerticalCurve(int startX, int startY, int curveChance) // startY is always height
+        static List<int> GenerateVerticalCurve(int startX, int startY, int curveChance) // startY is always 'height'
         {
             var curve = new List<int>();
             int curveStartX = startX;
@@ -229,24 +229,24 @@ namespace Algorithm_Design_4___Adventure_Map_Contd_
             return curve;
         }
 
-        static void DrawVerticalCurve(List<int> curve, int x, int y)
+        static void DrawVerticalCurve(List<int> curve, int x, int y, char left, char middle, char right) // 'x' and 'y' are 2D loop control variables
         {
-                int direction = curve[y + 1] - curve[y];
+            int direction = curve[y + 1] - curve[y]; // Lead direction by subtracting next row down from current row
 
-                if (direction == -1)
-                {
-                    Console.Write("/");
-                }
+            if (direction == -1)
+            {
+                Console.Write(left);
+            }
 
-                else if (direction == 0)
-                {
-                    Console.Write("|");
-                }
+            else if (direction == 0)
+            {
+                Console.Write(middle);
+            }
 
-                else
-                {
-                    Console.Write("\\");
-                }
+            else
+            {
+                Console.Write(right);
+            }
 
         }
     }
