@@ -116,6 +116,7 @@ Console.WriteLine($"The player will have to perform {performRolls} rolls.");*/
             Console.WriteLine("DICE SIMULATOR");
             while (programRun)
             {
+
                 Console.WriteLine("Enter dice roll in standard dice notation (AdX+B): ");
                 string diceNotation = Console.ReadLine();
                 {

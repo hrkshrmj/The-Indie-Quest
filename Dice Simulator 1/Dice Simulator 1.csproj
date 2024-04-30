@@ -15,6 +15,7 @@
     <None Remove="d4 ASCII.txt" />
     <None Remove="d6 ASCII.txt" />
     <None Remove="d8 ASCII.txt" />
+    <None Remove="Hari ASCII.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="d8 ASCII.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hari ASCII.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
